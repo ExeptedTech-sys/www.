@@ -1,0 +1,22 @@
+EMILIANO MAGAÑA — ACTUALIZACIÓN OFICIAL PARA GITHUB PAGES
+
+PUBLICACIÓN
+1. Extrae completamente el ZIP.
+2. En tu repositorio, conserva index.html, styles.css, app.js, CNAME, y la carpeta assets al mismo nivel.
+3. IMPORTANTE: elimina del repositorio archivos viejos si ya no se necesitan, para evitar confusión de versiones.
+4. Haz Add file > Upload files, seleccionando los archivos Y LA CARPETA ASSETS con toda su estructura. Si tu navegador no mantiene las carpetas, arrastra la carpeta assets junto con los archivos raíz, o usa GitHub Desktop para subir todo el directorio.
+5. Commit changes y espera a que se publique GitHub Pages. Refresca con Ctrl+F5.
+6. Si Pages publica desde /docs, pon los archivos dentro de /docs (y no en la raíz).
+
+IMPORTANTE: Los dos MP4 son inferiores a 25 MB cada uno. GitHub puede limitar el número y tamaño de elementos por subida web; si falla, haz la subida en tandas, o utiliza GitHub Desktop.
+
+INCLUYE
+- Presentación de eventos, con tus dos videos reales.
+- Mi talento / prueba vocal en archivo de audio M4A extraído del primer video (primeros 55 segundos).
+- Sitio completo con biografía, dossier, trayectoria, servicios, repertorio, galería y cotización WhatsApp.
+- Galería de fotografías extraídas de los dos videos que enviaste. Para incorporar nuevas fotografías originales independientes, envía esos archivos.
+- Logo ExeptedTech con enlace a https://exeptedtech.xyz, tanto en el pie como en botón flotante.
+- Optimización de imágenes a WebP, miniaturas, video H.264 con faststart y carga de video solo al reproducir.
+- CNAME para emilianomaganaoficial.lat (conservado del proyecto anterior).
+
+Verificación automatizada: rutas de todos los recursos, existencia de CSS/JS, sintaxis JS, estructura multimedia. No se probaron dispositivos físicos ni un despliegue en producción.

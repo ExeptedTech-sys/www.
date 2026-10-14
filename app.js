@@ -1,0 +1,17 @@
+'use strict';
+const menuButton=document.querySelector('.menu-toggle');
+const navigation=document.getElementById('navigation');
+function closeMenu(){navigation.classList.remove('open');menuButton.setAttribute('aria-expanded','false');}
+menuButton.addEventListener('click',()=>{const open=menuButton.getAttribute('aria-expanded')!=='true';navigation.classList.toggle('open',open);menuButton.setAttribute('aria-expanded',String(open));});
+navigation.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu();});
+const quote=document.getElementById('quoteDialog');const photo=document.getElementById('photoDialog');let lastTrigger=null;
+function showDialog(dialog,trigger){lastTrigger=trigger;dialog.showModal();document.body.classList.add('modal-open');}
+[quote,photo].forEach(dialog=>{dialog.querySelector('[data-close]').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog){const rect=dialog.getBoundingClientRect();if(e.clientX<rect.left||e.clientX>rect.right||e.clientY<rect.top||e.clientY>rect.bottom)dialog.close();}});dialog.addEventListener('close',()=>{document.body.classList.remove('modal-open');if(lastTrigger)lastTrigger.focus();});});
+document.querySelectorAll('[data-quote]').forEach(button=>button.addEventListener('click',()=>{closeMenu();if(button.dataset.quote)document.querySelector('[name=format]').value=button.dataset.quote;showDialog(quote,button);}));
+document.querySelectorAll('[data-image]').forEach(button=>button.addEventListener('click',()=>{document.getElementById('fullPhoto').src=button.dataset.image;document.getElementById('fullPhoto').alt=button.dataset.title;document.getElementById('photoTitle').textContent=button.dataset.title;showDialog(photo,button);}));
+document.getElementById('quoteForm').addEventListener('submit',event=>{event.preventDefault();const data=new FormData(event.target);const message=`Hola Yenner, soy ${data.get('name').trim()}. Vengo del sitio de Emiliano Magaña y quisiera solicitar disponibilidad y cotización.\n\nFormato: ${data.get('format')}\nCiudad: ${data.get('city').trim()}\nEvento: ${data.get('event').trim()}\nFecha: ${data.get('date')}\nDetalles: ${data.get('details').trim()||'Sin detalles adicionales'}`;window.open('https://wa.me/529141332727?text='+encodeURIComponent(message),'_blank','noopener,noreferrer');});
+let category='all';const normalize=text=>text.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+function filter(){const search=normalize(document.getElementById('artistSearch').value);let count=0;document.querySelectorAll('.artist').forEach(card=>{const visible=(category==='all'||card.dataset.kind===category)&&normalize(card.dataset.name).includes(search);card.hidden=!visible;if(visible)count++;});document.getElementById('searchStatus').textContent=count?`${count} intérpretes en esta selección.`:'No hay coincidencias. Prueba con otro nombre o categoría.';}
+document.querySelectorAll('[data-category]').forEach(button=>button.addEventListener('click',()=>{category=button.dataset.category;document.querySelectorAll('[data-category]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));filter();}));document.getElementById('artistSearch').addEventListener('input',filter);filter();
+document.querySelectorAll('video').forEach(video=>video.addEventListener('play',()=>document.querySelectorAll('video').forEach(other=>{if(other!==video)other.pause();})));
